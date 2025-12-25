@@ -3,6 +3,11 @@ const ContractActions = dynamic(() => import("./ContractActions"), { ssr: false 
 
 import { useState } from "react"
 
+/**
+ * Renders the admin panel, which allows users to interact with the smart contracts.
+ * @param address The user's STX address.
+ * @returns The AdminPanel component.
+ */
 export default function AdminPanel({ address }: { address?: string }) {
   const [manual, setManual] = useState("")
   const active = address || (manual.trim() || undefined)
