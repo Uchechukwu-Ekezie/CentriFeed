@@ -1,3 +1,7 @@
+/**
+ * Renders the hero section of the page.
+ * @returns The Hero component.
+ */
 export default function Hero() {
   return (
     <section className="bg-hero pt-28 pb-16">
