@@ -2,6 +2,11 @@
 import dynamic from "next/dynamic"
 const ConnectWallet = dynamic(() => import("./ConnectWallet"), { ssr: false })
 
+/**
+ * Renders the navigation bar.
+ * @param onAddress A callback function that is called with the user's STX address when they connect their wallet.
+ * @returns The Navbar component.
+ */
 export default function Navbar({ onAddress }: { onAddress?: (addr: string) => void }) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur bg-white/50 dark:bg-neutral-900/50">
