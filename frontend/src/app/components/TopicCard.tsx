@@ -1,5 +1,10 @@
 type Topic = { id: number; title: string; description: string; stakers: number; treasury: string }
 
+/**
+ * Renders a card that displays information about a topic.
+ * @param topic The topic to display.
+ * @returns The TopicCard component.
+ */
 export default function TopicCard({ topic }: { topic: Topic }) {
   return (
     <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 p-5 hover:shadow-sm transition">
