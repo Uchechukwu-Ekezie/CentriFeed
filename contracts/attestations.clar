@@ -1,3 +1,5 @@
+;; This contract is used to store attestations about content.
+
 (define-map content {hash: (buff 32)} {url: (string-ascii 200), attestor: principal})
 (define-data-var paused bool false)
 (define-data-var admin (optional principal) none)
