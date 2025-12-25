@@ -4,6 +4,11 @@ import { useState } from "react"
 type StxAddr = { mainnet?: string; testnet?: string }
 type FinishPayload = { profile?: { stxAddress?: StxAddr } }
 
+/**
+ * Renders a button that allows users to connect their Stacks wallet.
+ * @param onAddress A callback function that is called with the user's STX address when they connect their wallet.
+ * @returns The ConnectWallet component.
+ */
 export default function ConnectWallet({ onAddress }: { onAddress?: (addr: string) => void }) {
   const [address, setAddress] = useState<string | null>(null)
   const onConnect = () => {
