@@ -1,3 +1,5 @@
+;; This contract is used to manage the curation of content.
+
 (define-data-var next-topic-id uint u0)
 (define-data-var next-submission-id uint u0)
 (define-data-var paused bool false)
