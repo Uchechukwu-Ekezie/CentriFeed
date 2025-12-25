@@ -1,3 +1,5 @@
+;; This contract is used to manage tips for content.
+
 (define-map tips {submission: uint, tipper: principal} {amount: uint})
 (define-data-var paused bool false)
 (define-data-var admin (optional principal) none)
