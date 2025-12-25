@@ -1,3 +1,5 @@
+# This file is used to configure the Clarinet testing environment.
+
 [project]
 name = "centrifeed"
 version = "0.1.0"
