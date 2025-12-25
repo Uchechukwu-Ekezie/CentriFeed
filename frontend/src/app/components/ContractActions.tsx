@@ -25,6 +25,11 @@ async function call(contractName: string, functionName: string, args: ClarityVal
   })
 }
 
+/**
+ * Renders a list of contract actions that the user can perform.
+ * @param address The user's STX address.
+ * @returns The ContractActions component.
+ */
 export default function ContractActions({ address }: { address?: string }) {
   return (
     <div style={{ display: "grid", gap: 16 }}>
