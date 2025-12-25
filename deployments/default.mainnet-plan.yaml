@@ -1,0 +1,39 @@
+---
+id: 0
+name: Mainnet deployment
+network: mainnet
+stacks-node: "https://api.hiro.so"
+bitcoin-node: "http://blockstack:blockstacksystem@bitcoin.blockstack.com:8332"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - contract-publish:
+            contract-name: curation
+            expected-sender: SP2QNSNKR3NRDWNTX0Q7R4T8WGBJ8RE8RA516AKZP
+            cost: 21290
+            path: contracts/curation.clar
+            anchor-block-only: true
+            clarity-version: 1
+        - contract-publish:
+            contract-name: funding
+            expected-sender: SP2QNSNKR3NRDWNTX0Q7R4T8WGBJ8RE8RA516AKZP
+            cost: 13170
+            path: contracts/funding.clar
+            anchor-block-only: true
+            clarity-version: 1
+        - contract-publish:
+            contract-name: reputation
+            expected-sender: SP2QNSNKR3NRDWNTX0Q7R4T8WGBJ8RE8RA516AKZP
+            cost: 9320
+            path: contracts/reputation.clar
+            anchor-block-only: true
+            clarity-version: 1
+        - contract-publish:
+            contract-name: tips
+            expected-sender: SP2QNSNKR3NRDWNTX0Q7R4T8WGBJ8RE8RA516AKZP
+            cost: 8670
+            path: contracts/tips.clar
+            anchor-block-only: true
+            clarity-version: 1
+      epoch: "2.05"

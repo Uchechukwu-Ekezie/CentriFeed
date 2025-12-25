@@ -1,0 +1,24 @@
+[project]
+name = "centrifeed"
+version = "0.1.0"
+description = "Bitcoin-native AI social curation"
+
+[contracts.curation]
+path = "contracts/curation.clar"
+clarity_version = 1
+
+[contracts.tips]
+path = "contracts/tips.clar"
+clarity_version = 1
+
+[contracts.attestations]
+path = "contracts/attestations.clar"
+clarity_version = 1
+
+[contracts.reputation]
+path = "contracts/reputation.clar"
+clarity_version = 1
+
+[contracts.funding]
+path = "contracts/funding.clar"
+clarity_version = 1
