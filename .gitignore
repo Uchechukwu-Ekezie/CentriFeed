@@ -1,2 +1,4 @@
+# This file is used to ignore files that should not be committed to git.
+
 .env
 settings/Mainnet.toml
