@@ -1,5 +1,7 @@
 # CentriFeed
 
+**Note:** This project is currently under development.
+
 Bitcoin‑native AI social curation built on Stacks. CentriFeed turns high‑quality links, threads, papers, and videos into on‑chain, community‑curated feeds that reward trustworthy discovery.
 
 ## Vision
