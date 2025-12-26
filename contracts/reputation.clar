@@ -35,6 +35,13 @@
       (begin (var-set paused true) (ok true))
       (err ERR_NOT_AUTHORIZED)))
 
+(define-public (transfer-admin (new-admin principal))
+  (if (is-admin tx-sender)
+      (begin
+        (var-set admin (some new-admin))
+        (ok true))
+      (err ERR_NOT_AUTHORIZED)))
+
 (define-public (unpause)
   (if (is-admin tx-sender)
       (begin (var-set paused false) (ok true))
