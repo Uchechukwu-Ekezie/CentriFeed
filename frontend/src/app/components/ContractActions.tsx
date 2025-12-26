@@ -89,8 +89,11 @@ export default function ContractActions({ address }: { address?: string }) {
               </button>
             )}
             {c.name === "attestations" && (
-              <button onClick={() => call(c.name, "revoke", [uintCV(1)])}>
-                Revoke
+              <button onClick={() => call(c.name, "revoke", [uintCV(1)])}>Revoke</button>
+            )}
+            {c.name === "curation" && (
+              <button onClick={() => call(c.name, "unstake", [uintCV(1)])}>Unstake</button>
+            )}    Revoke
               </button>
             )}
           </div>
