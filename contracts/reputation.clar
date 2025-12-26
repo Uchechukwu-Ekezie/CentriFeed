@@ -3,6 +3,7 @@
 (define-constant ERR_PAUSED u1000)
 (define-constant ERR_ADMIN_ALREADY_SET u1002)
 (define-constant ERR_NOT_AUTHORIZED u1003)
+(define-constant ERR_USER_NOT_FOUND u1004)
 
 (define-map reputation {user: principal} {score: uint})
 (define-data-var paused bool false)
@@ -33,6 +34,13 @@
 (define-public (pause)
   (if (is-admin tx-sender)
       (begin (var-set paused true) (ok true))
+      (err ERR_NOT_AUTHORIZED)))
+
+(define-public (admin-set-score (user principal) (score uint))
+  (if (is-admin tx-sender)
+      (begin
+        (map-set reputation {user: user} {score: score})
+        (ok true))
       (err ERR_NOT_AUTHORIZED)))
 
 (define-public (transfer-admin (new-admin principal))
