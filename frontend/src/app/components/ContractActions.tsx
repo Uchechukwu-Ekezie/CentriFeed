@@ -50,7 +50,7 @@ export default function ContractActions({ address }: { address?: string }) {
           style={{ border: "1px solid #eee", padding: 12, borderRadius: 8 }}
         >
           <div style={{ fontWeight: 600 }}>{c.name}</div>
-          <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: 8, marginTop: 8 }}>
             <button
               disabled={!address}
               onClick={() =>
