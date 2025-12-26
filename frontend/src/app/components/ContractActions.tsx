@@ -88,6 +88,11 @@ export default function ContractActions({ address }: { address?: string }) {
                 Cancel Round
               </button>
             )}
+            {c.name === "attestations" && (
+              <button onClick={() => call(c.name, "revoke", [uintCV(1)])}>
+                Revoke
+              </button>
+            )}
           </div>
         </div>
       ))}
