@@ -93,6 +93,9 @@ export default function ContractActions({ address }: { address?: string }) {
             )}
             {c.name === "curation" && (
               <button onClick={() => call(c.name, "unstake", [uintCV(1)])}>Unstake</button>
+            )}
+            {c.name === "reputation" && (
+              <button disabled={!address} onClick={() => address && call(c.name, "admin-set-score", [standardPrincipalCV(address), uintCV(100)])}>Set Score</button>
             )}    Revoke
               </button>
             )}
