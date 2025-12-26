@@ -3,6 +3,8 @@
 (define-constant ERR_PAUSED u1000)
 (define-constant ERR_ADMIN_ALREADY_SET u1002)
 (define-constant ERR_NOT_AUTHORIZED u1003)
+(define-constant ERR_STAKE_NOT_FOUND u1004)
+(define-constant ERR_NOT_CURATOR u1005)
 
 (define-data-var next-topic-id uint u0)
 (define-data-var next-submission-id uint u0)
@@ -69,6 +71,19 @@
         (var-set admin (some new-admin))
         (ok true))
       (err ERR_NOT_AUTHORIZED)))
+
+(define-public (unstake (topic uint))
+  (if (var-get paused)
+      (err ERR_PAUSED)
+      (let ((stake (map-get? stakes {curator: tx-sender, topic: topic})))
+        (match stake
+          s
+            (if (is-eq tx-sender (get curator s))
+                (begin
+                  (map-delete stakes {curator: tx-sender, topic: topic})
+                  (ok true))
+                (err ERR_NOT_CURATOR))
+          (err ERR_STAKE_NOT_FOUND)))))
 
 (define-public (unpause)
   (if (is-admin tx-sender)
