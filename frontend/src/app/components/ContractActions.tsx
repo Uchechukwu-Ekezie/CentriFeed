@@ -83,6 +83,11 @@ export default function ContractActions({ address }: { address?: string }) {
                 Create Topic
               </button>
             )}
+            {c.name === "funding" && (
+              <button onClick={() => call(c.name, "cancel-round", [uintCV(1)])}>
+                Cancel Round
+              </button>
+            )}
           </div>
         </div>
       ))}
