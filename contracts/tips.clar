@@ -3,6 +3,7 @@
 (define-constant ERR_PAUSED u1000)
 (define-constant ERR_ADMIN_ALREADY_SET u1002)
 (define-constant ERR_NOT_AUTHORIZED u1003)
+(define-constant ERR_TIP_NOT_FOUND u1004)
 
 (define-map tips {submission: uint, tipper: principal} {amount: uint})
 (define-data-var paused bool false)
@@ -30,6 +31,17 @@
   (if (is-admin tx-sender)
       (begin (var-set paused true) (ok true))
       (err ERR_NOT_AUTHORIZED)))
+
+(define-public (update-tip (submission uint) (amount uint))
+  (if (var-get paused)
+      (err ERR_PAUSED)
+      (let ((tip (map-get? tips {submission: submission, tipper: tx-sender})))
+        (match tip
+          t
+            (begin
+              (map-set tips {submission: submission, tipper: tx-sender} {amount: amount})
+              (ok true))
+          (err ERR_TIP_NOT_FOUND)))))
 
 (define-public (transfer-admin (new-admin principal))
   (if (is-admin tx-sender)
