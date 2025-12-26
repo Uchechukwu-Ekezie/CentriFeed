@@ -3,6 +3,7 @@
 (define-constant ERR_PAUSED u1000)
 (define-constant ERR_ADMIN_ALREADY_SET u1002)
 (define-constant ERR_NOT_AUTHORIZED u1003)
+(define-constant ERR_ROUND_NOT_FOUND u1004)
 
 (define-data-var next-round-id uint u0)
 (define-data-var paused bool false)
@@ -47,6 +48,16 @@
       (begin
         (var-set admin (some new-admin))
         (ok true))
+      (err ERR_NOT_AUTHORIZED)))
+
+(define-public (cancel-round (round-id uint))
+  (if (is-admin tx-sender)
+      (let ((round (map-get? rounds {id: round-id})))
+        (match round
+          r (begin
+              (map-delete rounds {id: round-id})
+              (ok true))
+          (err ERR_ROUND_NOT_FOUND))))
       (err ERR_NOT_AUTHORIZED)))
 
 (define-public (unpause)
