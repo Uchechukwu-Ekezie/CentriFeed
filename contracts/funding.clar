@@ -1,5 +1,9 @@
 ;; This contract is used to manage funding rounds for content.
 
+(define-constant ERR_PAUSED u1000)
+(define-constant ERR_ADMIN_ALREADY_SET u1002)
+(define-constant ERR_NOT_AUTHORIZED u1003)
+
 (define-data-var next-round-id uint u0)
 (define-data-var paused bool false)
 (define-data-var admin (optional principal) none)
@@ -12,13 +16,13 @@
 (define-public (init-admin (p principal))
   (if (is-none (var-get admin))
       (begin (var-set admin (some p)) (ok true))
-      (err u1002)))
+      (err ERR_ADMIN_ALREADY_SET)))
 (define-map rounds {id: uint} {topic: uint, pool: uint})
 (define-map pledges {round: uint, submission: uint, pledger: principal} {amount: uint})
 
 (define-public (create-round (topic uint) (pool uint))
   (if (var-get paused)
-      (err u1000)
+      (err ERR_PAUSED)
       (begin
         (var-set next-round-id (+ (var-get next-round-id) u1))
         (map-set rounds {id: (var-get next-round-id)} {topic: topic, pool: pool})
@@ -27,7 +31,7 @@
 
 (define-public (pledge (round uint) (submission uint) (amount uint))
   (if (var-get paused)
-      (err u1000)
+      (err ERR_PAUSED)
       (begin
         (map-set pledges {round: round, submission: submission, pledger: tx-sender} {amount: amount})
         (ok true)
@@ -36,9 +40,9 @@
 (define-public (pause)
   (if (is-admin tx-sender)
       (begin (var-set paused true) (ok true))
-      (err u1003)))
+      (err ERR_NOT_AUTHORIZED)))
 
 (define-public (unpause)
   (if (is-admin tx-sender)
       (begin (var-set paused false) (ok true))
-      (err u1003)))
+      (err ERR_NOT_AUTHORIZED)))
