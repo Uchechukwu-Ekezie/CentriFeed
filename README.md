@@ -107,5 +107,4 @@ Pseudo interfaces to guide implementation:
 - Week 3: Frontend Alpha + wallet flows.
 - Week 4: Reputation/slashing + quadratic funding.
 
-## License
-MIT
+
