@@ -95,11 +95,6 @@ Pseudo interfaces to guide implementation:
 (define-public (tip (submission uint) (amount uint)) (ok true))
 ```
 
-```clarity
-;; attestations.clar
-(define-map content {hash: (buff 32)} {url: (string-ascii 200), attestor: principal})
-(define-public (attest (hash (buff 32)) (url (string-ascii 200))) (ok true))
-```
 
 ## Milestones & Deliverables
 - Week 1: Contracts MVP + unit tests.
